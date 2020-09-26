@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Friendly
   - Player_Rocket
+  - Music
   layers:
   - Default
   - TransparentFX

@@ -112,6 +112,12 @@ public class Rocket : MonoBehaviour
         int maxSceneCount = SceneManager.sceneCountInBuildSettings;
         int nextSceneIndex = currentSceneIndex + 1;
 
+        int highestLevelCleared = SaveSystem.LoadPlayer().highestLevelCleared;
+        if (highestLevelCleared < currentSceneIndex)
+        {
+            SaveSystem.SavePlayer(currentSceneIndex);
+        }
+
         if (nextSceneIndex < maxSceneCount)
         {
             SceneManager.LoadScene(nextSceneIndex);
