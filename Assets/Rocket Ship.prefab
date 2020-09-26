@@ -51,7 +51,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2949757547931411140}
   serializedVersion: 2
-  m_Mass: 3
+  m_Mass: 30
   m_Drag: 0.5
   m_AngularDrag: 0.5
   m_UseGravity: 1
@@ -72,7 +72,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rcsThrust: 150
-  mainThrust: 5000
+  mainThrust: 40000
+  levelLoadDelay: 2
   mainEngine: {fileID: 8300000, guid: b3b71af33d423af46b58a7e434fdfd8d, type: 3}
   success: {fileID: 8300000, guid: f35da85d105179147a868f9a35070649, type: 3}
   death: {fileID: 8300000, guid: b4dc3b3eeacef4746908dbeb4bee1aad, type: 3}

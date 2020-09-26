@@ -20,6 +20,8 @@ public class Rocket : MonoBehaviour
     Rigidbody rigidBody;
     AudioSource audioSource;
 
+    bool timerStarted = false;
+
     enum State
     {
         Alive,
@@ -87,8 +89,18 @@ public class Rocket : MonoBehaviour
         }
     }
 
+    private void StopTimer()
+    {
+        if (timerStarted)
+        {
+            TimerController.instance.EndTimer();
+            timerStarted = true;
+        }
+    }
+
     private void StartDeathSequence()
     {
+        StopTimer();
         state = State.Dying;
         audioSource.Stop();
         mainEngineParticles.Stop();
@@ -99,6 +111,7 @@ public class Rocket : MonoBehaviour
 
     private void StartSuccessSequence()
     {
+        StopTimer();
         state = State.Transcending;
         audioSource.Stop();
         audioSource.PlayOneShot(success);
@@ -190,6 +203,12 @@ public class Rocket : MonoBehaviour
     private void ApplyThrust()
     {
         rigidBody.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
+
+        if (!timerStarted)
+        {
+            TimerController.instance.BeginTimer();
+            timerStarted = true;  
+        }
 
         if (!audioSource.isPlaying)
         {

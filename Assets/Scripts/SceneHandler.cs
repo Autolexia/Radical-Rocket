@@ -33,6 +33,10 @@ public class SceneHandler : MonoBehaviour
 
     public void StartGame()
     {
+        if (SceneManager.sceneCountInBuildSettings < levelToLoad + 1)
+        {
+            return;
+        }
         SceneManager.LoadScene(levelToLoad);
     }
 }
