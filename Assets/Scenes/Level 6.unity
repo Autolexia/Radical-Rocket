@@ -421,6 +421,16 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player_Rocket
       objectReference: {fileID: 0}
+    - target: {fileID: 2949757547931411142, guid: 2f7f2d7b8a396aa42bc61d795e506a47,
+        type: 3}
+      propertyPath: ObjectToHide
+      value: 
+      objectReference: {fileID: 361352676782719673}
+    - target: {fileID: 2949757547931411142, guid: 2f7f2d7b8a396aa42bc61d795e506a47,
+        type: 3}
+      propertyPath: ObjectToShow
+      value: 
+      objectReference: {fileID: 361352676782719674}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f7f2d7b8a396aa42bc61d795e506a47, type: 3}
 --- !u!1001 &688606047
@@ -1253,6 +1263,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c55ba3239d4dda448b33362d5be3a184, type: 3}
+--- !u!1 &361352676782719673 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8138720519897775739, guid: c55ba3239d4dda448b33362d5be3a184,
+    type: 3}
+  m_PrefabInstance: {fileID: 361352676782719672}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &361352676782719674 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5252708003395867467, guid: c55ba3239d4dda448b33362d5be3a184,
+    type: 3}
+  m_PrefabInstance: {fileID: 361352676782719672}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3146271925104014033
 PrefabInstance:
   m_ObjectHideFlags: 0

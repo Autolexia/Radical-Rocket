@@ -7,13 +7,13 @@ public class TimerController : MonoBehaviour
 {
     public static TimerController instance;
 
-    public Text timeCounter;
-    public Text timeCounter2;
+    public Text TimeCounter;
+    public Text TimeCounter2;
+    public Text TimeCounter3;
 
 
     private TimeSpan timePlaying;
     private bool timerGoing;
-    private bool gamePaused;
 
     private float elapsedTime;
 
@@ -24,7 +24,7 @@ public class TimerController : MonoBehaviour
 
     private void Start()
     {
-        timeCounter.text = "00:00:00";
+        TimeCounter.text = "00:00:00";
         timerGoing = false;
     }
 
@@ -53,8 +53,9 @@ public class TimerController : MonoBehaviour
             elapsedTime += Time.deltaTime;
             timePlaying = TimeSpan.FromSeconds(elapsedTime);
             string timePlayingStr = timePlaying.ToString("mm':'ss':'ff");
-            timeCounter.text = timePlayingStr;
-            timeCounter2.text = timeCounter.text;
+            TimeCounter.text = timePlayingStr;
+            TimeCounter2.text = TimeCounter.text;
+            TimeCounter3.text = "Time: " + TimeCounter.text;
 
             yield return null;
         }

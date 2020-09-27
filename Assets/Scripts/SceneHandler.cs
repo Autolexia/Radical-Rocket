@@ -39,4 +39,15 @@ public class SceneHandler : MonoBehaviour
         }
         SceneManager.LoadScene(levelToLoad);
     }
+
+    public void NextLevel()
+    {
+        if (SceneManager.sceneCountInBuildSettings < levelToLoad + 1)
+        {
+            return;
+        }
+
+        var rocket = new Rocket();
+        rocket.LoadNextLevel();
+    }
 }

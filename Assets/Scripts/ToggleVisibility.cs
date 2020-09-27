@@ -17,4 +17,10 @@ public class ToggleVisibility : MonoBehaviour
             ObjectToHide.SetActive(false);
         }
     }
+
+    public ToggleVisibility(GameObject objectToShow, GameObject objectTohide)
+    {
+        ObjectToHide = objectTohide;
+        ObjectToShow = objectToShow;
+    }
 }

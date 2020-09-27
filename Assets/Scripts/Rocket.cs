@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using UnityStandardAssets.CrossPlatformInput;
 
 public class Rocket : MonoBehaviour
@@ -20,7 +21,8 @@ public class Rocket : MonoBehaviour
     Rigidbody rigidBody;
     AudioSource audioSource;
 
-    bool timerStarted = false;
+    public GameObject ObjectToShow;
+    public GameObject ObjectToHide;
 
     enum State
     {
@@ -91,11 +93,7 @@ public class Rocket : MonoBehaviour
 
     private void StopTimer()
     {
-        if (timerStarted)
-        {
-            TimerController.instance.EndTimer();
-            timerStarted = true;
-        }
+        TimerController.instance.EndTimer();
     }
 
     private void StartDeathSequence()
@@ -116,20 +114,34 @@ public class Rocket : MonoBehaviour
         audioSource.Stop();
         audioSource.PlayOneShot(success);
         successParticles.Play();
-        Invoke("LoadNextLevel", levelLoadDelay);
+        SaveProgress();
+
+        Invoke("ShowSuccessMenu", levelLoadDelay);
     }
 
-    private void LoadNextLevel()
+    private void ShowSuccessMenu()
+    {
+        var toggleVisibility = new ToggleVisibility(ObjectToShow, ObjectToHide);
+
+        toggleVisibility.ToggleObjectVisibility();
+    }
+
+    private void SaveProgress()
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        int maxSceneCount = SceneManager.sceneCountInBuildSettings;
-        int nextSceneIndex = currentSceneIndex + 1;
 
         int highestLevelCleared = SaveSystem.LoadPlayer().highestLevelCleared;
         if (highestLevelCleared < currentSceneIndex)
         {
             SaveSystem.SavePlayer(currentSceneIndex);
         }
+    }
+
+    public void LoadNextLevel()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int maxSceneCount = SceneManager.sceneCountInBuildSettings;
+        int nextSceneIndex = currentSceneIndex + 1;
 
         if (nextSceneIndex < maxSceneCount)
         {
@@ -139,7 +151,6 @@ public class Rocket : MonoBehaviour
         {
             SceneManager.LoadScene(0);
         }
-        
     }
 
     private void LoadCurrentLevel()
@@ -203,12 +214,6 @@ public class Rocket : MonoBehaviour
     private void ApplyThrust()
     {
         rigidBody.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
-
-        if (!timerStarted)
-        {
-            TimerController.instance.BeginTimer();
-            timerStarted = true;  
-        }
 
         if (!audioSource.isPlaying)
         {
